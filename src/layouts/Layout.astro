@@ -4,6 +4,8 @@ interface Props {
 }
 
 const { title } = Astro.props;
+import { ViewTransitions } from 'astro:transitions';
+
 ---
 
 <!doctype html>
@@ -15,36 +17,24 @@ const { title } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<ViewTransitions />
 	</head>
 	<body>
-		<slot />
+		<nav class="bg-stone-900 py-5">
+			<div class="flex justify-center gap-x-4">
+				<a class="text-white font-bold cursor-pointer hover:text-amber-200" href="/">Home</a>
+				<a class="text-white font-bold cursor-pointer hover:text-amber-200" href="textiles">Textiles</a>
+				<a class="text-white font-bold cursor-pointer hover:text-amber-200" href="#">Manteles</a>
+				<a class="text-white font-bold cursor-pointer hover:text-amber-200" href="#">Artesanias</a>
+			</div>
+		</nav>
+		<div class="wrapper  w-full h-full mx-auto">
+			<slot />
+		</div>
+		<footer class="bg-stone-900 py-5">
+			<small class="text-white">© 2024 Todos los derechos reservados. Fernando Rodriguez</small>
+		</footer>
 	</body>
 </html>
 <style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
 </style>
